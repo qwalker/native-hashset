@@ -29,7 +29,7 @@ private:
         }
 
         static Handle<Value> New(const std::unordered_set<K> *set) {
-            Local<Object> obj = Nan::New<FunctionTemplate>(GetCtor)->GetFunction()->NewInstance();
+            Local<Object> obj = Nan::NewInstance(Nan::New<FunctionTemplate>(GetCtor)->GetFunction()).ToLocalChecked();
             Iterator *it = new Iterator(set);
 
             it->Wrap(obj);
